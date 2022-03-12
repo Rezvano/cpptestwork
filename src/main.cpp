@@ -1,19 +1,26 @@
 #include <iostream>
-#include "GLFW/glfw3.h"
 
-int main(){
-    if(!glfwInit()){
-        return -1;
-    }
-    GLFWwindow* window = glfwCreateWindow(640, 640, "C++ testwork", nullptr, nullptr);
+#include "glew.h"
+#include "glfw3.h"
 
-    while (!glfwWindowShouldClose(window))
+#include "Window.h"
+#include "Input.h"
+
+int main()
+{
+
+    Window window(300, 300, (char *)"cpptestwork");
+    Input input(window.window);
+
+    while (!window.ShouldClose())
     {
-        glClearColor(0,0,0,1);
-        glClear(GL_COLOR_BUFFER_BIT);
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        input.Loop();
+        window.Loop(); 
+
+        if(input.Clicked()){
+            std::cout << "Cliked at xpos: " << input.mouseX << " ypos: " << input.mouseY << std::endl;
+        }       
     }
-    glfwTerminate();
-    return 0;    
+
+    return 0;
 }

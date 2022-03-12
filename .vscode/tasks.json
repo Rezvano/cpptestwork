@@ -7,12 +7,23 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "-I${workspaceFolder}/include",
-                "-L${workspaceFolder}/lib",				
-                "${workspaceFolder}/src/\\*.cpp",				
-                //"${workspaceFolder}/src/\\*.c",
+                //GLFW
+                "-I${workspaceFolder}/libs/GLFW/include",
+                "-L${workspaceFolder}/libs/GLFW/lib",
+                //GLEW
+                "-I${workspaceFolder}/libs/GLEW/include",
+                "-L${workspaceFolder}/libs/GLEW/lib",
+                //Window
+                "-I${workspaceFolder}/libs/Window",
+                "${workspaceFolder}/libs/Window/Window.cpp",
+                //Input
+                "-I${workspaceFolder}/libs/Input",
+                "${workspaceFolder}/libs/Input/Input.cpp",
+                //user code
+                "${workspaceFolder}/src/\\*.cpp",
                 "-lglfw3dll",
                 "-lopengl32",
+                "-lglew32",
                 "-o",
                 "${workspaceFolder}\\cpptestwork.exe",
             ],
