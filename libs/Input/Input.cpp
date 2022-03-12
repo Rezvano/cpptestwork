@@ -12,7 +12,7 @@ void glfw_cursor_callback(GLFWwindow *window, double xpos, double ypos)
     static_cast<Input *>(glfwGetWindowUserPointer(window))->cursor_callback(xpos, ypos);
 }
 
-Input::Input(GLFWwindow *window) : window(window)
+void Input::Init(GLFWwindow *window, int *inputFrames)
 {
     glfwSetWindowUserPointer(window, this);
     glfwSetMouseButtonCallback(window, glfw_mouse_callback);
@@ -22,10 +22,7 @@ Input::Input(GLFWwindow *window) : window(window)
     centerX /= 2;
     centerY /= 2;
 
-    mouseX = 0;
-    mouseY = 0;
-    inputFrames = 0;
-    pressFrame = 0;
+    this->inputFrames = inputFrames;
 }
 
 void Input::mouse_callback(int action)
@@ -34,7 +31,7 @@ void Input::mouse_callback(int action)
     {
     case GLFW_PRESS:
         mousePress = true;
-        pressFrame = inputFrames;
+        pressFrame = *inputFrames;
         break;
     case GLFW_RELEASE:
         mousePress = false;
@@ -47,17 +44,16 @@ void Input::mouse_callback(int action)
 
 void Input::cursor_callback(double xpos, double ypos)
 {
-    mouseX = (xpos-centerX) / centerX;
-    mouseY = - (ypos - centerY) / centerY;
+    mouseX = (xpos - centerX) / centerX;
+    mouseY = (centerY - ypos) / centerY;
 }
 
 bool Input::Clicked()
 {
-    return mousePress && (pressFrame == inputFrames);
+    return mousePress && (pressFrame == *inputFrames);
 }
 
 void Input::Loop()
 {
-    inputFrames++;
     glfwPollEvents();
 }

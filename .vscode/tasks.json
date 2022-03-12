@@ -19,6 +19,9 @@
                 //Input
                 "-I${workspaceFolder}/libs/Input",
                 "${workspaceFolder}/libs/Input/Input.cpp",
+                //Object
+                "-I${workspaceFolder}/libs/Object",
+                "${workspaceFolder}/libs/Object/Object.cpp",
                 //user code
                 "${workspaceFolder}/src/\\*.cpp",
                 "-lglfw3dll",

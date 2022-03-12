@@ -6,17 +6,16 @@
 class Input
 {
 private:
-    GLFWwindow *window;
-    bool mousePress;
-    int pressFrame;
-    int inputFrames;
-    int centerX, centerY;
+    bool mousePress = false;
+    int pressFrame = 0;
+    int *inputFrames;
+    int centerX = 0, centerY = 0;
 
 public:
     void mouse_callback(int action);
     void cursor_callback(double xpos, double ypos);
 
-    Input(GLFWwindow *window);
+    void Init(GLFWwindow *window, int *inputFrames);
 
     bool Clicked();
 

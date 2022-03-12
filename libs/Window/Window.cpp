@@ -27,6 +27,8 @@ Window::Window(int width, int height, char *name)
     {
         throw std::runtime_error("glew init falied\r\n");
     }
+
+    input.Init(window, &frames);
 }
 
 bool Window::ShouldClose()
@@ -36,7 +38,9 @@ bool Window::ShouldClose()
 
 void Window::Loop()
 {
+    frames++;
     glfwSwapBuffers(window);
+    input.Loop();
 }
 
 Window::~Window()
