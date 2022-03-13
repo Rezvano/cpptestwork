@@ -13,15 +13,24 @@
                 //GLEW
                 "-I${workspaceFolder}/libs/GLEW/include",
                 "-L${workspaceFolder}/libs/GLEW/lib",
+                //GLM
+                "-I${workspaceFolder}/libs/glm",
                 //Window
                 "-I${workspaceFolder}/libs/Window",
                 "${workspaceFolder}/libs/Window/Window.cpp",
+                "${workspaceFolder}/libs/Window/Shaders.cpp",
                 //Input
                 "-I${workspaceFolder}/libs/Input",
                 "${workspaceFolder}/libs/Input/Input.cpp",
                 //Object
                 "-I${workspaceFolder}/libs/Object",
                 "${workspaceFolder}/libs/Object/Object.cpp",
+                //Mesh
+                "-I${workspaceFolder}/libs/Mesh",
+                "${workspaceFolder}/libs/Mesh/Mesh.cpp",
+                //Game
+                "-I${workspaceFolder}/libs/Game",
+                "${workspaceFolder}/libs/Game/Game.cpp",
                 //user code
                 "${workspaceFolder}/src/\\*.cpp",
                 "-lglfw3dll",
